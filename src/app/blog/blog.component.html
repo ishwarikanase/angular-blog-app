@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="blog py-3">
+        <div>
+            <label for="Blog">
+                <h4>Blog Feed</h4>
+            </label>
+        </div>
+        <button type="button" class="btn btn-sm newPost mr-1 py-2" (click)="newPost()">New Post</button>
+        <button type="button" class="btn btn-sm reload py-2" (click)="reload()"><i
+                class="pi pi-refresh mr-1"></i>Reload</button>
+        <div class="mt-3" *ngFor="let item of list">
+            <p-panel>
+                <p-header>
+                    Blog Post
+                </p-header>
+                <div>
+                    Content of the panel can be expanded and collapsed using toggleable option, default state is defined
+                    with collapsed option. By default, toggle icon is used to toggle the contents whereas setting
+                    toggler to
+                    "header" enables clicking anywhere in the header to trigger a toggle.
+                </div>
+                <div class="panel mt-2 mb-2">
+                    <div><strong>Posted by:</strong>Ishwari Kanase</div>
+                    <div><strong>Date:</strong>Ishwari Kanase</div>
+                    <div class="py-2">
+                        <button type="button" class="btn btn-sm like mr-1" (click)="newPost()"><i class="pi pi-thumbs-up
+                            mr-1"></i>
+                            Likes:1</button>
+                        <button type="button" class="btn btn-sm dislike" (click)="reload()"><i class="pi pi-thumbs-down
+                                mr-1"></i>Dislikes:2</button>
+                    </div>
+                </div>
+                <div class="comments">
+                    <button type="button" class="btn btn-sm comment mr-1" (click)="newPost()">Post Comment</button>
+                    <div class="mt-2">
+                        <a (click)="show()" role="button" *ngIf="!success">Show Comments<i class="pi pi-comment
+                            mr-1"></i> </a>
+                        <a (click)="show()" role="button" *ngIf="success">Hide Comments<i class="pi pi-comment
+                                mr-1"></i> </a>
+                        <div *ngIf="success">
+                            <div class="mt-2"><strong>Raj:</strong>great post!!</div>
+                            <div class="mt-2"><strong>Seema:</strong>food post!!</div>
+                        </div>
+                    </div>
+
+                </div>
+            </p-panel>
+        </div>
+
+    </div>
+</div>
