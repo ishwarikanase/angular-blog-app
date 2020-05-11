@@ -7,7 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./blog.component.scss']
 })
 export class BlogComponent implements OnInit {
-  list=[1,2,3,4];
+  list:Array<Number>=[1,2,3,4];
   success:boolean;
   constructor(private router:Router,private route:ActivatedRoute) { }
 
