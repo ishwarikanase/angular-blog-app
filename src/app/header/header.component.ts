@@ -26,12 +26,13 @@ export class HeaderComponent implements OnInit {
 
   }
   profile() {
-
+    this.router.navigate(['../profile'], { relativeTo: this.route });
   }
   blog() {
     this.router.navigate(['../blog'], { relativeTo: this.route });
   }
   logout() {
-
+    localStorage.clear();
+    this.router.navigate(['/login'], { relativeTo: this.route });
   }
 }
