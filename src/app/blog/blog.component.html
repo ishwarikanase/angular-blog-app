@@ -31,7 +31,7 @@
                     <button type="button" class="btn btn-sm comment mr-1" (click)="newComment(item._id)">Post
                         Comment</button>
                     <form [formGroup]="postCommentForm" (submit)="submit(item._id)">
-                        <div class="mt-2" *ngIf="comment">
+                        <div class="mt-2" *ngIf="comment && Id==item._id">
                             <textarea class="form-control" formControlName="comment"></textarea>
                             <div class="mt-2">
                                 <button type="submit" class="btn btn submit mr-1 btn-sm">Submit
@@ -42,11 +42,11 @@
                     </form>
 
                     <div class="mt-2">
-                        <a (click)="show(item._id)" role="button" *ngIf="!success" class="showComments">Show Comments<i
-                                class="pi pi-comments"></i></a>
-                        <a (click)="show(item._id)" role="button" *ngIf="success" class="hideComments">Hide Comments<i
-                                class="pi pi-comments"></i></a>
-                        <div *ngIf="success">
+                        <a (click)="show(item._id)" role="button" *ngIf="!success || Id!=item._id || Id==null"
+                            class="showComments">Show Comments<i class="pi pi-comments"></i></a>
+                        <a (click)="show(item._id)" role="button" *ngIf="success && Id==item._id && Id!=null"
+                            class="hideComments">Hide Comments<i class="pi pi-comments"></i></a>
+                        <div *ngIf="success && Id==item._id">
                             <div class="mt-2" *ngFor="let comment of item.comments">
                                 <strong><a role="button" (click)="profile(item._id)"
                                         class="profile">{{comment.postedBy.name}} :</a></strong> {{comment.comment}}

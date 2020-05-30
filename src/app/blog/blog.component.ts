@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpService } from '../services/http.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Identifiers } from '@angular/compiler/src/render3/r3_identifiers';
 
 @Component({
   selector: 'app-blog',
@@ -15,6 +16,7 @@ export class BlogComponent implements OnInit {
   comment: boolean;
   likes: number;
   dislikes: number;
+  Id: number;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -47,7 +49,7 @@ export class BlogComponent implements OnInit {
   }
 
   newComment(id) {
-    console.log('id', id)
+    this.Id = id;
     this.comment = !this.comment;
   }
 
@@ -59,7 +61,7 @@ export class BlogComponent implements OnInit {
   }
 
   show(id) {
-    console.log('id', id)
+    this.Id = id;
     this.success = !this.success;
     this.allBlogs();
   }
