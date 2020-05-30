@@ -15,8 +15,10 @@ import { MessageService } from 'primeng/api';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { BlogComponent } from './blog/blog.component';
-import {PanelModule} from 'primeng/panel';
+import { PanelModule } from 'primeng/panel';
 import { NewPostComponent } from './new-post/new-post.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -39,6 +41,8 @@ import { NewPostComponent } from './new-post/new-post.component';
     MessageModule,
     ToastModule,
     PanelModule,
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

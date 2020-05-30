@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from '../services/http.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  username:string;
+  name:string;
+  email:string;
+  constructor(private httpService:HttpService) { }
 
   ngOnInit() {
+    this.httpService.getServiceCall('myProfile',true).subscribe(res=>{
+      // console.log(res['user']);
+      this.username=res['user'].username;
+      this.name=res['user'].name;
+      this.email=res['user'].email;
+      // console.log('this.user', this.user)
+    })
   }
 
 }

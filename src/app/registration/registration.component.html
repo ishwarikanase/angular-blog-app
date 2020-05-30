@@ -2,7 +2,7 @@
     <div class="messages">
         <p-messages [(value)]="msgs"></p-messages>
     </div>
-    <form class="form py-3">
+    <form class="form py-3" [formGroup]="registrationForm" (submit)="submit()">
         <div>
             <label for="register">
                 <h4>Register</h4>
@@ -11,30 +11,30 @@
 
         <div>
             <label for="name">Name</label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" formControlName="name">
         </div>
 
         <div>
             <label for="username">Username</label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" formControlName="username">
         </div>
 
         <div>
             <label for="email">Email</label>
-            <input type="email" class="form-control">
+            <input type="email" class="form-control" formControlName="email">
         </div>
 
         <div>
             <label for="password">Password</label>
-            <input type="password" class="form-control">
+            <input type="password" class="form-control" formControlName="password">
         </div>
 
         <div>
             <label for="cpassword">Confirm Password</label>
-            <input type="password" class="form-control">
+            <input type="password" class="form-control" formControlName="password">
         </div>
         <div>
-            <button type="button" class="btn btn submit" (click)="submit()">Submit</button>
+            <button type="submit" class="btn btn submit" [disabled]="registrationForm.invalid">Submit</button>
         </div>
     </form>
 </div>

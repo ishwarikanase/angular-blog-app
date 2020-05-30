@@ -6,13 +6,18 @@ import { SharedService } from './shared.service';
   providedIn: 'root'
 })
 export class HttpService {
-  readonly baseURL: "http://localhost:3000/api/";
+  readonly baseURL:string = "http://localhost:3000/api/";
   headers: HttpHeaders;
-  token;
+  token: string;
 
-  constructor(private http: HttpClient, private sharedService: SharedService) { }
-  getServiceCall(url: String, sendToken: boolean) {
-    this.token = this.sharedService.getLocalStorage();
+  constructor(
+    private http: HttpClient,
+    private sharedService: SharedService
+  ) { }
+
+  getServiceCall(url: string, sendToken: boolean) {
+
+    this.token = this.sharedService.getLocalStorage('token');
     if (sendToken) {
       this.headers = new HttpHeaders({
         "Content-Type": "application/json",
@@ -24,14 +29,14 @@ export class HttpService {
         "Content-Type": "application/json"
       });
     }
-    return this.http.get(this.baseURL+url,{
-      headers:this.headers
+    return this.http.get(this.baseURL + url, {
+      headers: this.headers
     });
   }
 
 
-  postServiceCall(url:String,body,sendToken:boolean){
-    this.token = this.sharedService.getLocalStorage();
+  postServiceCall(url: string, body, sendToken: boolean) {
+    this.token = this.sharedService.getLocalStorage('token');
     if (sendToken) {
       this.headers = new HttpHeaders({
         "Content-Type": "application/json",
@@ -39,12 +44,14 @@ export class HttpService {
       });
     }
     else {
+      console.log(this.baseURL+url);
       this.headers = new HttpHeaders({
         "Content-Type": "application/json"
       });
     }
-    return this.http.post(this.baseURL+url,body,{
-      headers:this.headers
+    // return "hello";
+    return this.http.post(this.baseURL + url, body, {
+      headers: this.headers
     });
   }
 }

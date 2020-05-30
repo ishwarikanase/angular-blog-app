@@ -1,9 +1,8 @@
 <div class="container">
     <div class="messages">
         <p-messages [(value)]="msgs"></p-messages>
-        <!-- <p-toast severity="success"></p-toast> -->
     </div>
-    <form class="form py-3">
+    <form class="form py-3" [formGroup]="loginForm" (submit)='login()'>
         <div>
             <label for="login">
                 <h4>Login</h4>
@@ -11,14 +10,14 @@
         </div>
         <div>
             <label for="username">Username</label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" formControlName="username">
         </div>
         <div>
             <label for="password">Password</label>
-            <input type="password" class="form-control">
+            <input type="password" class="form-control" formControlName="password">
         </div>
         <div>
-            <button type="button" class="btn btn login" (click)="login()">Login</button>
+            <button type="submit" class="btn btn login">Login</button>
         </div>
     </form>
 </div>

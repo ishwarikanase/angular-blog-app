@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DataShareService } from '../services/data-share.service';
+import { SharedService } from '../services/shared.service';
+import { HttpService } from '../services/http.service';
 
 @Component({
   selector: 'app-header',
@@ -11,10 +13,24 @@ export class HeaderComponent implements OnInit {
 
   success: boolean = false;
 
-  constructor(private router: Router, private route: ActivatedRoute, private dataShare: DataShareService) { }
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private dataShare: DataShareService,
+    private sharedService: SharedService,
+    private httpService: HttpService
+  ) { }
 
   ngOnInit() {
-    this.dataShare.currentHeader.subscribe(success => this.success = success);
+    if (this.sharedService.getLocalStorage('token')) {
+      this.success = true;
+    }
+
+    this.dataShare.currentHeader.subscribe(success => {
+      if (success) {
+        this.success = success;
+      }
+    });
   }
   register() {
     this.router.navigate(['/registration'], { relativeTo: this.route });
@@ -33,6 +49,7 @@ export class HeaderComponent implements OnInit {
   }
   logout() {
     localStorage.clear();
+    this.success = false;
     this.router.navigate(['/login'], { relativeTo: this.route });
   }
 }

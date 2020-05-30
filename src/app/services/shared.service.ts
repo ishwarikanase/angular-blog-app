@@ -6,10 +6,12 @@ import { Injectable } from '@angular/core';
 export class SharedService {
 
   constructor() { }
-  getLocalStorage(){
-    return JSON.parse(localStorage.getItem('token'));
+  getLocalStorage(key: string) {
+    if (localStorage.getItem(key)) {
+      return JSON.parse(localStorage.getItem(key));
+    }
   }
-  setLocalStorage(){
-    localStorage.setItem("token","123");
+  setLocalStorage(key: string, value: any) {
+    localStorage.setItem(key, JSON.stringify(value));
   }
 }
